@@ -10,9 +10,7 @@ readme = "README.md"
 license = "Apache-2.0"
 repository = "https://github.com/Johnserf-Seed/f2"
 requires-python = ">=3.10"
-authors = [
-    { name = "Johnserf-Seed", email = "support@f2.wiki" },
-]
+authors = [{ name = "Johnserf-Seed", email = "support@f2.wiki" }]
 
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -83,6 +81,8 @@ dependencies = [
     "protobuf==5.28.3",
     "gmssl==3.2.2",
     "cryptography==44.0.1",
+    "bilibili-api-python",
+    "moviepy",
 ]
 
 [project.scripts]
@@ -99,9 +99,7 @@ Chat = "https://discord.gg//3PhtPmgHf8"
 path = "f2/__init__.py"
 
 [tool.hatch.build.targets.sdist]
-include = [
-    "/f2",
-]
+include = ["/f2"]
 
 [tool.black]
 line-length = 88

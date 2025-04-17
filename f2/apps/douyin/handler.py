@@ -103,6 +103,17 @@ class DouyinHandler:
         "video_bit_rate",
         "cover",
         "images_video",
+        "status_code",
+        "has_more",
+        "max_cursor",
+        "min_cursor",
+        "author_avatar_thumb",
+        "author_deleted",
+        "caption",
+        "caption_raw",
+        "music_title",
+        "music_title_raw",
+        "video_duration"
     ]
 
     def __init__(self, kwargs: dict = None) -> None:
@@ -303,28 +314,6 @@ class DouyinHandler:
             )
         )
 
-        await self._send_bark_notification(
-            _("[DouYin] 单个作品下载"),
-            _(
-                "作品ID：{0}\n"
-                "类型：{1}\n"
-                "文案：{2}\n"
-                "作者：{3}\n"
-                "下载时间：{4}"
-            ).format(
-                video.aweme_id,
-                video.aweme_type,
-                (
-                    video.desc_raw[:20] + "..."
-                    if len(video.desc_raw) > 20
-                    else video.desc_raw
-                ),
-                video.nickname_raw,
-                timestamp_2_str(get_timestamp("sec")),
-            ),
-            group="DouYin",
-        )
-
         return video
 
     @mode_handler("post")
@@ -490,12 +479,12 @@ class DouyinHandler:
             )
 
             # async with AsyncVideoDB("douyin_videos.db") as db:
-            #     for aweme_data in aweme_data_list:
-            #         await get_or_add_video_data(aweme_data, db, ignore_fields)
+            #     for aweme_data in aweme_data_list._to_list():
+            #         await self.get_or_add_video_data(aweme_data, db, self.ignore_fields)
 
             # # 一次性批量插入作品数据到数据库
             # async with AsyncVideoDB("douyin_videos.db") as db:
-            #     await db.batch_insert_videos(aweme_data_list, ignore_fields)
+            #     await db.batch_insert_videos(aweme_data_list, self.ignore_fields)
 
     async def fetch_user_like_videos(
         self,
